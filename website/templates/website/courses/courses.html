@@ -1,0 +1,9 @@
+<h1>Courses</h1>
+
+{% include "website/navbar.html" %}
+
+<ul>
+  {% for course in courses %}
+    <li>{{ course.level }} {{ course.location }} {{ course.time }} {{ course.days }}</li>
+  {% endfor %}
+</ul>
