@@ -1,0 +1,9 @@
+<h1>Students</h1>
+
+{% include "website/navbar.html" %}
+
+<ul>
+  {% for student in students %}
+    <li>{{ student.firstName }} {{ student.lastName }}</li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'website/main.css' %}" />
+
+<nav>
+  <form action="/" method='get'>
+    <input type="submit" value="Home">
+  </form>
+  <form action="/students" method='get'>
+    <input type="submit" value="Students">
+  </form>
+  <form action="/courses" method='get'>
+    <input type="submit" value="Courses">
+  </form>
+</nav>
