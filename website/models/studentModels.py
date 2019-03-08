@@ -8,4 +8,7 @@ class Student(models.Model):
     email = models.CharField(max_length=100)
     phone = models.IntegerField()
     nativeLanguage = models.CharField(max_length=100)
-    skillLevel = models.ForeignKey(Skills, on_delete=models.CASCADE)
+    speaking = models.ForeignKey(Skills, related_name='speaking', on_delete=models.CASCADE)
+    writing = models.ForeignKey(Skills, related_name='writing', on_delete=models.CASCADE)
+    vocabulary = models.ForeignKey(Skills, related_name='vocabulary', on_delete=models.CASCADE)
+    skillLevel = models.ForeignKey(Skills, related_name='skillLevel', on_delete=models.CASCADE)

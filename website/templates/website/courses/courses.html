@@ -2,8 +2,21 @@
 
 {% include "website/navbar.html" %}
 
+
+<h4>Here are all of your classes.</h4>
+{% for course in courses %}
 <ul>
-  {% for course in courses %}
-    <li>{{ course.level }} {{ course.location }} {{ course.time }} {{ course.days }}</li>
-  {% endfor %}
-</ul>
+    <p>{{ course.location }} - {{ course.level.level }} </p>
+    <ul>
+      <li>Number of Students: {{ Students.student_set.all|length}}</li>
+    </ul>
+  </ul>
+  <br>
+{% endfor %}
+
+<h3>Add a class</h3>
+<div>
+    <form action="/addCourse" method='get'>
+      <input type="submit" value="Add A Class">
+    </form>
+  </div>

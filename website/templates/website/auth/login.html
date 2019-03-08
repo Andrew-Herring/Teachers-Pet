@@ -5,7 +5,7 @@
     </head>
 
     <body>
-        <h1>Login to Bangazon</h1>
+        <h1>Login to Teachers Pet</h1>
 
         <form id="login_form" method="post" action="{% url 'website:login' %}">
             {% csrf_token %}
@@ -14,8 +14,12 @@
             Password: <input type="password" name="password" value="" size="50" />
             <br />
 
-            <input type="submit" value="submit" />
-        </form>
+            <input type="submit" value="Log In" />
+          </form>
+          <p>Or if you are new you can register here</p>
+          <form action="/register" method='get'>
+            <input type="submit" value="Register">
+          </form>
 
     </body>
 </html>
