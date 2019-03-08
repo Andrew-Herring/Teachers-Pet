@@ -2,6 +2,8 @@
 
 {% include "website/navbar.html" %}
 
+
+<h4>Here are all of your classes.</h4>
 <ul>
   {% for course in courses %}
     <li>{{ course.level }} {{ course.location }} {{ course.time }} {{ course.days }}</li>

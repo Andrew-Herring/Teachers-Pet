@@ -5,15 +5,19 @@
     <meta charset="utf-8">
     <title>Teachers Pet</title>
   </head>
+  {% if user.is_authenticated %}
   <body>
     <h1>Teachers Pet</h1>
     {% include "website/navbar.html" %}
-    {% if user.is_authenticated %}
     <h1>Welcome {{ user.username }}!</h1>
-    <a href="{% url 'website:logout' %}">Logout</a>
     {% else %}
-    <div><a href="{% url 'website:register' %}">Register</a></div>
-    <div><a href="{% url 'website:login' %}">Login</a></div>
+<h1>Welcome To Teachers Pet</h1>
+<form action="/login" method='get'>
+  <input type="submit" value="Login">
+</form>
+<form action="/register" method='get'>
+  <input type="submit" value="Register">
+</form>
     {% endif %}
   </body>
 </html>
