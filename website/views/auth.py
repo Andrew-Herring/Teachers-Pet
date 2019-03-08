@@ -81,7 +81,7 @@ def login_user(request):
     return render(request, 'website/auth/login.html', {}, context)
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
-@login_required
+@login_required(login_url='/login')
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
     logout(request)

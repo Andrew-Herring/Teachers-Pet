@@ -1,11 +1,11 @@
 insert into website_teacher values (null, 'English', '6155865886', 1);
 
 
-insert into website_course values (null, "8:00am", 'Prague', 'MWF', '2019-03-08', '2019-05-8', 3, 1);
-insert into website_course values (null, "10:00am", 'Mars', 'Tues/Thurs', '2019-04-08', '2019-06-08', 4, 1);
-insert into website_course values (null, "9:00am", 'Canada', 'MWF', '2019-03-09', '2019-05-10', 6, 1);
-insert into website_course values (null, "10:00am", 'Canary Islands', 'MWF', '2019-04-08', '2019-08-08', 3, 1);
-insert into website_course values (null, "7:00am", 'hoen', 'MWF', '2019-03-08', '2019-05-8', 2, 1);
+insert into website_course values (null, 'Prague', "8:00am", 'MWF', '2019-03-08', '2019-05-8', 3, 1);
+insert into website_course values (null, 'Mars', "10:00am", 'Tues/Thurs', '2019-04-08', '2019-06-08', 4, 1);
+insert into website_course values (null, 'Canada', "9:00am", 'MWF', '2019-03-09', '2019-05-10', 6, 1);
+insert into website_course values (null, 'Nashville Software School', "10:00am", 'MWF', '2019-04-08', '2019-08-08', 3, 1);
+insert into website_course values (null, 'Hoen', "7:00am", 'MWF', '2019-03-08', '2019-05-8', 2, 1);
 
 insert into website_skills values (null, 'A1');
 insert into website_skills values (null, 'A2');

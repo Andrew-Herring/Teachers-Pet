@@ -6,6 +6,9 @@
 <h4>Here are all of your registered students</h4>
 <ul>
   {% for student in students %}
-    <li>{{ student.firstName }} {{ student.lastName }}</li>
+    <li>{{ student.firstName }} {{ student.lastName }}
+      <p>Student Level: {{ student.skillLevel.level }}
+      </p>
+    </li>
   {% endfor %}
 </ul>
