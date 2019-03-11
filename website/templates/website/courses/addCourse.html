@@ -1,13 +1,17 @@
 {%block content%}
 
-<h1>WE DID IT</h1>
+<h1>Add a course</h1>
 
-<!-- <div>
-  <form action="{% url 'website:addClass' %}" method="POST">
+<div>
+  <form action="{% url 'website:addCourse' %}" method="POST">
     {% csrf_token %}
     <input type="text" name="level" placeholder="Class Level" required=true>
     <input type="text" name="location" placeholder="Class Location" required=true>
+    <input type="text" name="days" placeholder="Days The Class Takes Place" required=true>
+    <input type="text" name="time" placeholder="What Time Does This Class Meet?" required=true>
+    <input type="date" name="startDate" required=true>
+    <input type="date" name="endDate" required=true>
     <input type="submit" value="Save new class">
   </form>
-</div> -->
+</div>
 {%endblock%}
