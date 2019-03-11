@@ -5,7 +5,7 @@
 <div>
   <form action="{% url 'website:addCourse' %}" method="POST">
     {% csrf_token %}
-    <input type="text" name="level" placeholder="Class Level" required=true>
+    <select name="level" id="level" placeholder="Class Level">
     <input type="text" name="location" placeholder="Class Location" required=true>
     <input type="text" name="days" placeholder="Days The Class Takes Place" required=true>
     <input type="text" name="time" placeholder="What Time Does This Class Meet?" required=true>

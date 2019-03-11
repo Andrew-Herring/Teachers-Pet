@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
-
+from website.models.skillModels import Skills
 from website.models.courseModels import Course
 
 @login_required(login_url='/login')
@@ -26,7 +26,7 @@ def addCourse(request):
     days = request.POST['days']
     startDate = request.POST['startDate']
     endDate = request.POST['endDate']
-    level = request.POST['level']
+    level = get_object_or_404(Skills, pk=request.Post['level'])
     newCourse = Course(location = location, time = time, days = days, startDate = startDate, endDate = endDate, level = level)
     newCourse.save()
     response = redirect('website:courseList')
