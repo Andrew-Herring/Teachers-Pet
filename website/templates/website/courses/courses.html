@@ -6,9 +6,9 @@
 <h4>Here are all of your classes.</h4>
 {% for course in courses %}
 <ul>
-    <p>{{ course.location }} - {{ course.level.level }} </p>
+    <p><a href="{% url 'website:courseDetails' course.id %}">{{ course.location }} - {{ course.level.level }}</a></p>
     <ul>
-      <li>Number of Students: {{ Students.student_set.all|length}}</li>
+      <li>Number of Students: {{ course.classroom_set.all|length}}</li>
     </ul>
   </ul>
   <br>

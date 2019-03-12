@@ -12,3 +12,4 @@ class Course(models.Model):
     startDate = models.DateField()
     endDate = models.DateField()
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+
