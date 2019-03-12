@@ -24,7 +24,8 @@ def addCourse(request):
     course_list = Course.objects.all()
     skill_list = Skills.objects.all()
     template = 'website/courses/addCourse.html'
-    return render(request, template, {'courses' : course_list, 'skill_list' : skill_list, 'teacher_list' : teacher_list})
+    context = {'courses' : course_list, 'skill_list' : skill_list, 'teacher_list' : teacher_list}
+    return render(request, template, context)
 
   if request.method == "POST":
     location = request.POST['location']
@@ -36,14 +37,13 @@ def addCourse(request):
     teacher = request.user.teacher
     newCourse = Course(location = location, time = time, days = days, startDate = startDate, endDate = endDate, level = level, teacher = teacher)
     newCourse.save()
-    response = redirect('website:courseList')
-    return response
+    return redirect('website:courseList')
 
 @login_required(login_url='/login')
 def courseDetails(request, course_id):
-  coursDetails = get_object_or_404(Classroom, pk=course_id)
+  courseDetails = get_object_or_404(Classroom, pk=course_id)
   classroom = Classroom.objects.filter(course_id=course_id)
   # print("my students", students)
-  context = { 'coursDetails' : coursDetails, 'classroom' : classroom }
+  context = { 'courseDetails' : courseDetails, 'classroom' : classroom }
   template = 'website/classroom/courseDetails.html'
   return render(request, template, context)
