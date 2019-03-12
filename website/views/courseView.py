@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
+from website.models.studentModels import Student
 from website.models.classroomModels import Classroom
 from website.models.teacherModels import Teacher
 from website.models.skillModels import Skills
@@ -40,8 +41,9 @@ def addCourse(request):
 
 @login_required(login_url='/login')
 def courseDetails(request, course_id):
-  # course_details = get_object_or_404(Classroom, pk=course_id)
-  # students = Student.objects.filter(course_id=course_id)
-  # context = { 'course_details' : course_details }
-  template = 'website/classroom/courseDetails/'
-  return render(request, template)
+  coursDetails = get_object_or_404(Classroom, pk=course_id)
+  classroom = Classroom.objects.filter(course_id=course_id)
+  # print("my students", students)
+  context = { 'coursDetails' : coursDetails, 'classroom' : classroom }
+  template = 'website/classroom/courseDetails.html'
+  return render(request, template, context)

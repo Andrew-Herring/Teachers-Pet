@@ -1,0 +1,15 @@
+{%block content%}
+
+{% include "website/navbar.html" %}
+
+<h1>Classroom Details</h1>
+<br>
+
+<h3> Students in the class </h3>  
+<ul>
+  {% for item in classroom %}
+  <li>{{ item.student.firstName }}  {{ item.student.lastName}} - {{item.student.skillLevel.level}} </li>
+  {% endfor %}
+</ul>
+
+{%endblock%}
