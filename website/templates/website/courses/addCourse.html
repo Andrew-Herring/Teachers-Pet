@@ -1,13 +1,28 @@
 {%block content%}
 
-<h1>WE DID IT</h1>
+<h1>Add a course</h1>
 
-<!-- <div>
-  <form action="{% url 'website:addClass' %}" method="POST">
+<div>
+  <form action="{% url 'website:addCourse' %}" method="POST">
     {% csrf_token %}
-    <input type="text" name="level" placeholder="Class Level" required=true>
-    <input type="text" name="location" placeholder="Class Location" required=true>
+
+    Class Level: <select name="level" id="level" placeholder="Class Level">
+      {% for skills in skill_list %}
+      <option value="{{skills.id}}">{{skills.level}}</option>
+      {% endfor %}
+    </select>
+
+    Location: <input type="text" name="location" placeholder="Class Location" required=true>
+
+    Meeting Days: <input type="text" name="days" placeholder="Days The Class Takes Place" required=true>
+
+    Meeting Time: <input type="text" name="time" placeholder="What Time Does This Class Meet?" required=true>
+
+    Class Start Date: <input type="date" name="startDate" required=true>
+
+    Class End Date: <input type="date" name="endDate" required=true>
+    
     <input type="submit" value="Save new class">
   </form>
-</div> -->
+</div>
 {%endblock%}
