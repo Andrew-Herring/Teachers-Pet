@@ -16,9 +16,10 @@
 </ul>
 
 <div>
-  <form action="/website/editStudent" method='get'>
-    <input type="submit" value="Edit Student Details">
-  </form>
-</div>
+    <form action="/studentEditForm/{{studentDetails.id}}" method='get'>
+      <input type="submit" value="Edit Student">
+    </form>
+  </div>
+
 
 {%endblock%}

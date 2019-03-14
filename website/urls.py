@@ -18,5 +18,7 @@ urlpatterns = [
     path('addCourse/', views.addCourse, name ='addCourse'),
     path('students/', views.studentList, name='studentList'),
     path('addStudent/', views.addStudent, name='addStudent'),
-    path('studentDetails/<int:id>', views.studentDetails, name='studentDetails')
+    path('studentDetails/<int:id>', views.studentDetails, name='studentDetails'),
+    path('studentEdit/<int:student_id>', views.studentEdit, name='studentEdit'),
+    path('studentEditForm/<int:student_id>', views.studentEditForm, name='studentEditForm')
 ]

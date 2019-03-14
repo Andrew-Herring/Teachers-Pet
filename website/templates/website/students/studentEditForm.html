@@ -1,6 +1,6 @@
-
+{%block content%}
 <div>
-    <form action="{% url 'website:addStudent' %}" method="POST">
+    <form action="{% url 'website:studentEdit' student.id %}" method="POST">
       {% csrf_token %}
   
       First Name: <input type="text" name="firstName" value="{{student.firstName}}" required=true>
@@ -31,7 +31,7 @@
           {% endfor %}
         </select>
   
-      Writing Skill: <select name="writing" id="writing">
+      Reading Skill: <select name="reading" id="reading">
           {% for skills in skill_list %}
           <option value="{{skills.id}}">{{skills.level}}</option>
           {% endfor %}

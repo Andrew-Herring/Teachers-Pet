@@ -56,9 +56,11 @@ def studentDetails(request, id):
 
 @login_required(login_url='/login')
 def studentEditForm(request, student_id):
-  student = get_object_or_404(Student, pk = student_id)
-  context = {'student' : student}
-  return render(request, 'website/students/editStudent.html', context)
+  student = get_object_or_404(Student, pk=student_id)
+  skill_list = Skills.objects.all()
+  context = {'student' : student, 'skill_list' : skill_list}
+  template = 'website/students/studentEditForm.html'
+  return render(request, template, context)
 
 
 @login_required(login_url='/login')
@@ -69,9 +71,9 @@ def studentEdit (request, student_id):
   student.email = request.POST['email']
   student.phone = request.POST['phone']
   student.nativeLanguage = request.POST['nativeLanguage']
-  student.skillLevel = request.POST['skillLevel']
-  student.reading_id = request.POST['reading_id']
-  student.speaking_id = request.POST['speaking_id']
-  student.vocabulary_id = request.POST['vocabulary_id']
+  student.skillLevel = get_object_or_404(Skills, pk=request.POST['skillLevel'])
+  student.reading_id = get_object_or_404(Skills, pk=request.POST['reading'])
+  student.speaking_id = get_object_or_404(Skills, pk=request.POST['speaking'])
+  student.vocabulary_id = get_object_or_404(Skills, pk=request.POST['vocabulary'])
   student.save()
-  return redirect('website:studentDetails', args=(student.id))
+  return HttpResponseRedirect(reverse('website:studentDetails', args=(student.id,)))
