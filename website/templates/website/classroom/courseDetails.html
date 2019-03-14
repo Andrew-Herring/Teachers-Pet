@@ -2,14 +2,33 @@
 
 {% include "website/navbar.html" %}
 
-<h1>Classroom Details</h1>
-<br>
-
-<h3> Students in the class </h3>  
+<h1>{{ courseDetails.location }} - {{ courseDetails.level.level }}</h1>
 <ul>
-  {% for item in classroom %}
-  <li>{{ item.student.firstName }}  {{ item.student.lastName}} - {{item.student.skillLevel.level}} </li>
-  {% endfor %}
+  <li>Meeting Time: {{ courseDetails.time }} </li>
+  <li>Days: {{ courseDetails.days}}</li>
+  <li>Start Date: {{ courseDetails.startDate}}</li>
+  <li>End Date: {{ courseDetails.endDate}}</li>
 </ul>
+<div>
+  <form action="/website/editCourse" method='get'>
+    <input type="submit" value="Edit Course Details">
+  </form>
+</div>
+<h3> Students In This Course</h3>  
+{% for classroom in courseDetails.classroom_set.all %}
+<ul>{{ classroom.student.firstName }}  {{ classroom.student.lastName}}
+  <li>Overall Skill Level - {{ classroom.student.skillLevel.level}} </li>
+  <li>Speaking Level - {{ classroom.student.speaking.level}} </li>
+  <li>Reading Skill Level - {{ classroom.student.reading.level}} </li>
+  <li>Vocabulary Skill Level - {{ classroom.student.vocabulary.level}} </li>
+
+  <div>
+    <form action="/website/editCourse" method='get'>
+      <input type="submit" value="Update Student Levels">
+    </form>
+  </div>
+</ul>
+  {% endfor %}
+
 
 {%endblock%}

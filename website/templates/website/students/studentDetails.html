@@ -1,0 +1,24 @@
+{%block content%}
+
+{% include "website/navbar.html" %}
+
+<h1>{{ studentDetails.firstName }} {{ studentDetails.lastName }} Details</h1>
+<br>
+  
+<h3>Overall Level</h3>
+<p>{{ studentDetails.skillLevel.level }} </p>
+
+<h3>Individual Scores</h3>
+<ul>
+  <li>Speaking: {{ studentDetails.speaking.level }}</li>
+  <li>Reading: {{ studentDetails.reading.level }}</li>
+  <li>Vocabulary: {{ studentDetails.vocabulary.level }}</li>
+</ul>
+
+<div>
+  <form action="/website/editStudent" method='get'>
+    <input type="submit" value="Edit Student Details">
+  </form>
+</div>
+
+{%endblock%}
