@@ -23,8 +23,8 @@
   <li>Vocabulary Skill Level - {{ classroom.student.vocabulary.level}} </li>
 
   <div>
-    <form action="/website/studentEditForm" method='get'>
-      <input type="submit" value="Update Student Levels">
+    <form action="/studentEditForm/{{studentDetails.id}}" method='get'>
+      <input type="submit" value="Edit Student">
     </form>
   </div>
 </ul>
