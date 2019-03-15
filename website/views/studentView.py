@@ -64,7 +64,7 @@ def studentEditForm(request, student_id):
 
 
 @login_required(login_url='/login')
-def studentEdit (request, student_id):
+def studentEdit(request, student_id):
   student = Student.objects.get(pk=student_id)
   student.firstName = request.POST['firstName']
   student.lastName = request.POST['lastName']
@@ -77,3 +77,11 @@ def studentEdit (request, student_id):
   student.vocabulary_id = get_object_or_404(Skills, pk=request.POST['vocabulary'])
   student.save()
   return HttpResponseRedirect(reverse('website:studentDetails', args=(student.id,)))
+
+
+@login_required(login_url="/login")
+def studentDelete(request, student_id):
+  student = get_object_or_404(Student, pk=student_id)
+  student.delete()
+  return HttpResponseRedirect(reverse("website:studentList"))
+

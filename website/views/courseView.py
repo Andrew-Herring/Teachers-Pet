@@ -48,3 +48,30 @@ def courseDetails(request, course_id):
   context = { 'courseDetails' : courseDetails }
   template = 'website/classroom/courseDetails.html'
   return render(request, template, context)
+
+@login_required(login_url='/login')
+def courseEditForm(request, course_id):
+  course = get_object_or_404(Course, pk=course_id)
+  skill_list = Skills.objects.all()
+  context = {'course' : course, 'skill_list' : skill_list}
+  template = 'website/courses/courseEditForm.html'
+  return render(request, template, context)
+
+@login_required(login_url='/login')
+def courseEdit(request, course_id):
+  course = Course.objects.get(pk=course_id)
+  course.location = request.POST['location']
+  course.time = request.POST['time']
+  course.days = request.POST['days']
+  course.startDate = request.POST['startDate']
+  course.endDate = request.POST['endDate']
+  course.level = get_object_or_404(Skills, pk=request.POST['level'])
+  course.teacher = request.user.teacher
+  course.save()
+  return HttpResponseRedirect(reverse('website:courseDetails', args=(course.id,)))
+
+@login_required(login_url="/login")
+def courseDelete(request, course_id):
+  course = get_object_or_404(Course, pk=course_id)
+  course.delete()
+  return HttpResponseRedirect(reverse("website:courseList"))

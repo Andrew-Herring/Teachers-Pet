@@ -1,0 +1,28 @@
+{%block content%}
+
+<h1>Add a course</h1>
+
+<div>
+  <form action="{% url 'website:courseEdit' course.id %}" method="POST">
+    {% csrf_token %}
+
+    Class Level: <select name="level" id="level" value="{{course.level}}">
+      {% for skills in skill_list %}
+      <option value="{{skills.id}}">{{skills.level}}</option>
+      {% endfor %}
+    </select>
+
+    Location: <input type="text" name="location" value="{{course.location}}" required=true>
+
+    Meeting Days: <input type="text" name="days" value="{{course.days}}" required=true>
+
+    Meeting Time: <input type="text" name="time" value="{{course.time}}" required=true>
+
+    Class Start Date: <input type="date" name="startDate" value="{{course.startDate}}" required=true>
+
+    Class End Date: <input type="date" name="endDate" value="{{course.endDate}}" required=true>
+    
+    <input type="submit" value="Save new class">
+  </form>
+</div>
+{%endblock%}

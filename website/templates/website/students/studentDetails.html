@@ -21,5 +21,11 @@
   </form>
 </div>
 
+<div>
+  <form action="/studentDelete/{{studentDetails.id}}" method='post'>
+    {% csrf_token %}
+    <input type="submit" value="Delete Student">
+  </form>
+</div>
 
 {%endblock%}
