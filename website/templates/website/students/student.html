@@ -6,7 +6,7 @@
 <h4>Here are all of your registered students</h4>
 <ul>
   {% for student in student_list %}
-    <li>{{ student.firstName }} {{ student.lastName }}
+    <li><a href="{% url 'website:studentDetails' student.id %}">{{ student.firstName }} {{ student.lastName }} </a>
       <p>Student Level: {{ student.skillLevel.level }}
       </p>
     </li>
@@ -14,6 +14,7 @@
 </ul>
 
 <h4>Add a Student</h4>
+
 
 <div>
     <form action="/addStudent" method='get'>

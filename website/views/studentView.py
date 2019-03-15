@@ -39,7 +39,41 @@ def addStudent(request):
     skillLevel = get_object_or_404(Skills, pk=request.POST['skillLevel'])
     speaking = get_object_or_404(Skills, pk=request.POST ['speaking'])
     vocabulary = get_object_or_404(Skills, pk=request.POST ['vocabulary'])
-    writing = get_object_or_404(Skills, pk=request.POST ['writing'])
-    newStudent = Student(firstName = firstName, lastName = lastName, email = email, phone = phone, nativeLanguage = nativeLanguage, skillLevel = skillLevel, speaking = speaking, vocabulary = vocabulary, writing = writing)
+    reading = get_object_or_404(Skills, pk=request.POST ['reading'])
+    newStudent = Student(firstName = firstName, lastName = lastName, email = email, phone = phone, nativeLanguage = nativeLanguage, skillLevel = skillLevel, speaking = speaking, vocabulary = vocabulary, reading = reading)
     newStudent.save()
     return redirect('website:studentList')  
+
+
+@login_required(login_url='/login')
+def studentDetails(request, id):
+  studentDetails = get_object_or_404(Student, pk=id)
+  student = Student.objects.filter(id=id)
+  context = { 'studentDetails' : studentDetails, 'student' : student }
+  template = 'website/students/studentDetails.html'
+  return render(request, template, context)
+
+
+@login_required(login_url='/login')
+def studentEditForm(request, student_id):
+  student = get_object_or_404(Student, pk=student_id)
+  skill_list = Skills.objects.all()
+  context = {'student' : student, 'skill_list' : skill_list}
+  template = 'website/students/studentEditForm.html'
+  return render(request, template, context)
+
+
+@login_required(login_url='/login')
+def studentEdit (request, student_id):
+  student = Student.objects.get(pk=student_id)
+  student.firstName = request.POST['firstName']
+  student.lastName = request.POST['lastName']
+  student.email = request.POST['email']
+  student.phone = request.POST['phone']
+  student.nativeLanguage = request.POST['nativeLanguage']
+  student.skillLevel = get_object_or_404(Skills, pk=request.POST['skillLevel'])
+  student.reading_id = get_object_or_404(Skills, pk=request.POST['reading'])
+  student.speaking_id = get_object_or_404(Skills, pk=request.POST['speaking'])
+  student.vocabulary_id = get_object_or_404(Skills, pk=request.POST['vocabulary'])
+  student.save()
+  return HttpResponseRedirect(reverse('website:studentDetails', args=(student.id,)))

@@ -1,0 +1,43 @@
+{%block content%}
+<div>
+    <form action="{% url 'website:studentEdit' student.id %}" method="POST">
+      {% csrf_token %}
+  
+      First Name: <input type="text" name="firstName" value="{{student.firstName}}" required=true>
+  
+      Last Name: <input type="text" name="lastName" value="{{student.lastName}}" required=true>
+  
+      Email: <input type="email" name="email" value="{{student.email}}" required=true>
+  
+      Phone: <input type="text" name="phone" value="{{student.phone}}" required=true>
+  
+      Native Language: <input type="text" name="nativeLanguage" value="{{student.nativeLanguage}}" required=true>
+  
+      Overall Skill Level: <select name="skillLevel" id="skillLevel">
+          {% for skills in skill_list %}
+          <option value="{{skills.id}}">{{skills.level}}</option>
+          {% endfor %}
+        </select>
+  
+      Speaking Skill: <select name="speaking" id="speaking">
+          {% for skills in skill_list %}
+          <option value="{{skills.id}}">{{skills.level}}</option>
+          {% endfor %}
+        </select>
+  
+      Vocabulary Skill: <select name="vocabulary" id="vocabulary">
+          {% for skills in skill_list %}
+          <option value="{{skills.id}}">{{skills.level}}</option>
+          {% endfor %}
+        </select>
+  
+      Reading Skill: <select name="reading" id="reading">
+          {% for skills in skill_list %}
+          <option value="{{skills.id}}">{{skills.level}}</option>
+          {% endfor %}
+        </select>
+      
+      <input type="submit" value="Save Student">
+    </form>
+  </div>
+  {%endblock%}

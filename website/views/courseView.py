@@ -15,7 +15,7 @@ from website.models.courseModels import Course
 def courseList(request):
   course_list = Course.objects.all()
   template = 'website/courses/courses.html'
-  return render(request, template, {'courses' : course_list})
+  return render(request, template, {'course_list' : course_list})
 
 @login_required(login_url='/login')
 def addCourse(request):
@@ -41,9 +41,10 @@ def addCourse(request):
 
 @login_required(login_url='/login')
 def courseDetails(request, course_id):
-  courseDetails = get_object_or_404(Classroom, pk=course_id)
-  classroom = Classroom.objects.filter(course_id=course_id)
+  print("DETAILS", course_id)
+  courseDetails = get_object_or_404(Course, pk=course_id)
+  # classroom = Classroom.objects.filter(course_id=course_id)
   # print("my students", students)
-  context = { 'courseDetails' : courseDetails, 'classroom' : classroom }
+  context = { 'courseDetails' : courseDetails }
   template = 'website/classroom/courseDetails.html'
   return render(request, template, context)

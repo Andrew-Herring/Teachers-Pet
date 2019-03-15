@@ -4,7 +4,9 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.template import RequestContext
 
-from website.forms import UserForm
+from website.forms import UserForm, TeacherForm
+from website.models.teacherModels import Teacher
+
 
 
 def index(request):
@@ -27,16 +29,23 @@ def register(request):
     # Create a new user by invoking the `create_user` helper method
     # on Django's built-in User model
     if request.method == 'POST':
+        print("STUFF", request.POST['phone'])
         user_form = UserForm(data=request.POST)
+        teacher_form = TeacherForm(data=request.POST) 
 
-        if user_form.is_valid():
+        if user_form.is_valid() and teacher_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
+            teacher = teacher_form.save(commit=False)
+            teacher.user = user
+            teacher.save()
 
             # Now we hash the password with the set_password method.
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
+            
+            # teacher.save()
 
             # Update our variable to tell the template registration was successful.
             registered = True
@@ -45,8 +54,9 @@ def register(request):
 
     elif request.method == 'GET':
         user_form = UserForm()
+        teacher_form = TeacherForm()
         template_name = 'website/auth/register.html'
-        return render(request, template_name, {'user_form': user_form})
+        return render(request, template_name, {'user_form': user_form, 'teacher_form' : teacher_form})
 
 
 def login_user(request):
