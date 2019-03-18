@@ -1,6 +1,8 @@
+{% extends "website/index.html" %}
+
+
 {%block content%}
 
-{% include "website/navbar.html" %}
 
 <h1>{{ courseDetails.location }} - {{ courseDetails.level.level }}</h1>
 <ul>
@@ -10,7 +12,7 @@
   <li>End Date: {{ courseDetails.endDate}}</li>
 </ul>
 <div>
-  <form action="/website/editCourse" method='get'>
+  <form action="/courseEditForm/{{courseDetails.id}}" method='get'>
     <input type="submit" value="Edit Course Details">
   </form>
 </div>
@@ -23,12 +25,17 @@
   <li>Vocabulary Skill Level - {{ classroom.student.vocabulary.level}} </li>
 
   <div>
-    <form action="/studentEditForm/{{studentDetails.id}}" method='get'>
-      <input type="submit" value="Edit Student">
+    <form action="/studentEditForm/{{classroom.student.id}}" method='get'>
+      <input type="submit" value="Update Student">
     </form>
   </div>
 </ul>
   {% endfor %}
-
+  <div>
+    <form action="/courseDelete/{{courseDetails.id}}" method='post'>
+      {% csrf_token %}
+      <input type="submit" value="Delete Course">
+    </form>
+  </div>
 
 {%endblock%}

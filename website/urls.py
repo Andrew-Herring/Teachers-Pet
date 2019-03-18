@@ -14,11 +14,15 @@ urlpatterns = [
     # Course URL's
     path('courses/', views.courseList, name ='courseList'),
     path('courseDetails/<int:course_id>', views.courseDetails, name ='courseDetails'),
+    path('courseEditForm/<int:course_id>', views.courseEditForm, name ='courseEditForm'),
+    path('courseEdit/<int:course_id>', views.courseEdit, name ='courseEdit'),
+    path('courseDelete/<int:course_id>', views.courseDelete, name='courseDelete'),
     # Student URL's
     path('addCourse/', views.addCourse, name ='addCourse'),
     path('students/', views.studentList, name='studentList'),
     path('addStudent/', views.addStudent, name='addStudent'),
     path('studentDetails/<int:id>', views.studentDetails, name='studentDetails'),
     path('studentEdit/<int:student_id>', views.studentEdit, name='studentEdit'),
-    path('studentEditForm/<int:student_id>', views.studentEditForm, name='studentEditForm')
+    path('studentEditForm/<int:student_id>', views.studentEditForm, name='studentEditForm'),
+    path('studentDelete/<int:student_id>', views.studentDelete, name='studentDelete')
 ]

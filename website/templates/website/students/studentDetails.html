@@ -1,6 +1,7 @@
+{% extends "website/index.html" %}
+
 {%block content%}
 
-{% include "website/navbar.html" %}
 
 <h1>{{ studentDetails.firstName }} {{ studentDetails.lastName }} Details</h1>
 <br>
@@ -21,5 +22,11 @@
   </form>
 </div>
 
+<div>
+  <form action="/studentDelete/{{studentDetails.id}}" method='post'>
+    {% csrf_token %}
+    <input type="submit" value="Delete Student">
+  </form>
+</div>
 
 {%endblock%}

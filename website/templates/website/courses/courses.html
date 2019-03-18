@@ -1,11 +1,14 @@
-<h1>Courses</h1>
+{% extends "website/index.html" %}
 
-{% include "website/navbar.html" %}
+
+{% block content %}
+
+<h1>Courses</h1>
 
 
 <h4>Here are all of your classes.</h4>
 {% for course in course_list %}
-<ul>
+<ul >
     <p><a href="{% url 'website:courseDetails' course.id %}">{{ course.location }} - {{ course.level.level }}</a></p>
     <ul>
       <li>Number of Students: {{ course.classroom_set.all|length}}</li>
@@ -20,3 +23,4 @@
       <input type="submit" value="Add A Class">
     </form>
   </div>
+{% endblock content %}
