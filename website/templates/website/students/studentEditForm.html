@@ -1,3 +1,6 @@
+{% extends "website/index.html" %}
+
+
 {%block content%}
 <div>
     <form action="{% url 'website:studentEdit' student.id %}" method="POST">

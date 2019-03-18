@@ -1,6 +1,8 @@
-<h1>Students</h1>
+{% extends "website/index.html" %}
 
-{% include "website/navbar.html" %}
+
+{% block content %}
+<h1>Students</h1>
 
 
 <h4>Here are all of your registered students</h4>
@@ -24,3 +26,5 @@
       <input type="submit" value="Add A Student">
     </form>
   </div>
+
+{% endblock content %}

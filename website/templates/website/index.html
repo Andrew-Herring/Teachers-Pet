@@ -7,19 +7,25 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
   </head>
-  {% if user.is_authenticated %}
+
   <body>
-    <h1>Teachers Pet</h1>
+    
+  {% if user.is_authenticated %}
+  <h1>Teachers Pet</h1>
     {% include "website/navbar.html" %}
     <h1>Welcome {{ user.username }}!</h1>
+      {% block content %}
+      {% endblock content%}
+    
+    
     {% else %}
-<h1>Welcome To Teachers Pet</h1>
-<form action="/login" method='get'>
-  <input type="submit" value="Login">
-</form>
-<form action="/register" method='get'>
-  <input type="submit" value="Register">
-</form>
+    <h1>Welcome To Teachers Pet</h1>
+    <form action="/login" method='get'>
+      <input type="submit" value="Login">
+    </form>
+    <form action="/register" method='get'>
+      <input type="submit" value="Register">
+    </form>
     {% endif %}
   </body>
 </html>
