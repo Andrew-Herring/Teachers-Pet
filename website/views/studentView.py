@@ -27,7 +27,8 @@ def addStudent(request):
   if request.method == "GET":
     student_list = Student.objects.all
     skill_list = Skills.objects.all()
-    context = {'student_list' : student_list, 'skill_list' : skill_list}
+    course_list = Course.objects.all()
+    context = {'student_list' : student_list, 'skill_list' : skill_list, 'course_list' : course_list}
     template = 'website/students/addStudent.html'
     return render(request, template, context)
   if request.method == "POST":
@@ -37,11 +38,15 @@ def addStudent(request):
     phone = request.POST['phone']
     nativeLanguage = request.POST['nativeLanguage']
     skillLevel = get_object_or_404(Skills, pk=request.POST['skillLevel'])
-    speaking = get_object_or_404(Skills, pk=request.POST ['speaking'])
-    vocabulary = get_object_or_404(Skills, pk=request.POST ['vocabulary'])
-    reading = get_object_or_404(Skills, pk=request.POST ['reading'])
+    speaking = get_object_or_404(Skills, pk=request.POST['speaking'])
+    vocabulary = get_object_or_404(Skills, pk=request.POST['vocabulary'])
+    reading = get_object_or_404(Skills, pk=request.POST['reading'])
+    course = get_object_or_404(Course, pk=request.POST['courseSelect'])
+
     newStudent = Student(firstName = firstName, lastName = lastName, email = email, phone = phone, nativeLanguage = nativeLanguage, skillLevel = skillLevel, speaking = speaking, vocabulary = vocabulary, reading = reading)
     newStudent.save()
+    newClassroom = Classroom(student = newStudent, course = course)
+    newClassroom.save()
     return redirect('website:studentList')  
 
 

@@ -39,6 +39,12 @@
         <option value="{{skills.id}}">{{skills.level}}</option>
         {% endfor %}
       </select>
+
+    Add Student to Course:  <select name="courseSelect" id="courseSelect">
+      {% for course in course_list %}
+      <option value="{{course.id}}">{{course.location}} - {{course.level.level}}</option>
+      {% endfor %}
+    </select>
     
     <input type="submit" value="Save Student">
   </form>
