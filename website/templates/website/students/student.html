@@ -2,29 +2,26 @@
 
 
 {% block content %}
-<h1>Students</h1>
 
 
-<h4>Here are all of your registered students</h4>
+<div class="screenAdjust">
+<h2>Students</h2>
+
+<h4>Here are all of your registered students, {{ user.username }}</h4>
 <ul>
   {% for student in student_list %}
     <li><a href="{% url 'website:studentDetails' student.id %}">{{ student.firstName }} {{ student.lastName }} </a>
-      <p>Student Level: {{ student.skillLevel.level }}
-      </p>
+      <p>Student Level: {{ student.skillLevel.level }}</p>
+      <br>
     </li>
-
-
-
   {% endfor %}
 </ul>
-
-<h4>Add a Student</h4>
 
 
 <div>
     <form action="/addStudent" method='get'>
-      <input type="submit" value="Add A Student">
+      <input class="btn btn-dark" type="submit" value="Add A Student">
     </form>
   </div>
-
+</div>
 {% endblock content %}

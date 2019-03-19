@@ -11,5 +11,4 @@ class Course(models.Model):
     days = models.CharField(max_length=200)
     startDate = models.DateField()
     endDate = models.DateField()
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-
+    teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)

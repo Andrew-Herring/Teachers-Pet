@@ -2,10 +2,13 @@
 
 
 {%block content%}
-<div>
+
+
+<div class="screenAdjust">
+  <h2>Adjust {{student.firstName}}'s Skills</h2>
     <form action="{% url 'website:studentEdit' student.id %}" method="POST">
       {% csrf_token %}
-  
+<!--   
       First Name: <input type="text" name="firstName" value="{{student.firstName}}" required=true>
   
       Last Name: <input type="text" name="lastName" value="{{student.lastName}}" required=true>
@@ -14,29 +17,45 @@
   
       Phone: <input type="text" name="phone" value="{{student.phone}}" required=true>
   
-      Native Language: <input type="text" name="nativeLanguage" value="{{student.nativeLanguage}}" required=true>
+      Native Language: <input type="text" name="nativeLanguage" value="{{student.nativeLanguage}}" required=true> -->
   
       Overall Skill Level: <select name="skillLevel" id="skillLevel">
           {% for skills in skill_list %}
+          {% if skills.id == student.skillLevel.id %}
+          <option value="{{skills.id}}" selected>{{skills.level}}</option>
+          {% else %}
           <option value="{{skills.id}}">{{skills.level}}</option>
+          {% endif %}
           {% endfor %}
         </select>
   
       Speaking Skill: <select name="speaking" id="speaking">
           {% for skills in skill_list %}
+          {% if skills.id == student.speaking.id %}
+          <option value="{{skills.id}}"selected>{{skills.level}}</option>
+          {% else %}
           <option value="{{skills.id}}">{{skills.level}}</option>
+          {% endif %}
           {% endfor %}
         </select>
   
       Vocabulary Skill: <select name="vocabulary" id="vocabulary">
           {% for skills in skill_list %}
+          {% if skills.id == student.vocabulary.id %}
+          <option value="{{skills.id}}"selected>{{skills.level}}</option>
+          {% else %}
           <option value="{{skills.id}}">{{skills.level}}</option>
+          {% endif %}
           {% endfor %}
         </select>
   
       Reading Skill: <select name="reading" id="reading">
           {% for skills in skill_list %}
+          {% if skills.id == student.reading.id %}
+          <option value="{{skills.id}}"selected>{{skills.level}}</option>
+          {% else %}
           <option value="{{skills.id}}">{{skills.level}}</option>
+          {% endif %}
           {% endfor %}
         </select>
       

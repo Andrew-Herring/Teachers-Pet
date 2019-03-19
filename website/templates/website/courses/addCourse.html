@@ -3,7 +3,9 @@
 
 {%block content%}
 
-<h1>Add a course</h1>
+<div class="screenAdjust">
+
+<h2>Add a course</h2>
 
 <div>
   <form action="{% url 'website:addCourse' %}" method="POST">
@@ -25,7 +27,8 @@
 
     Class End Date: <input type="date" name="endDate" required=true>
     
-    <input type="submit" value="Save new class">
+    <input class="btn btn-dark" type="submit" value="Save new class">
   </form>
+</div>
 </div>
 {%endblock%}

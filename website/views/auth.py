@@ -29,7 +29,6 @@ def register(request):
     # Create a new user by invoking the `create_user` helper method
     # on Django's built-in User model
     if request.method == 'POST':
-        print("STUFF", request.POST['phone'])
         user_form = UserForm(data=request.POST)
         teacher_form = TeacherForm(data=request.POST) 
 
@@ -80,7 +79,7 @@ def login_user(request):
         # If authentication was successful, log the user in
         if authenticated_user is not None:
             login(request=request, user=authenticated_user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/students')
 
         else:
             # Bad login details were provided. So we can't log the user in.

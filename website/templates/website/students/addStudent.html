@@ -3,9 +3,9 @@
 
 {%block content%}
 
-<h1>Add a student</h1>
 
-<div>
+<div class="screenAdjust">
+  <h2>Add a New Student</h2>
   <form action="{% url 'website:addStudent' %}" method="POST">
     {% csrf_token %}
 
@@ -49,7 +49,7 @@
       {% endfor %}
     </select>
     
-    <input type="submit" value="Save Student">
+    <input class="btn btn-dark" type="submit" value="Save Student">
   </form>
 </div>
 {%endblock%}

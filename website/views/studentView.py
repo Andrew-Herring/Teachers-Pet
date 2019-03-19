@@ -15,7 +15,9 @@ from website.models.studentModels import Student
 # get a complete list of students, access through the navbar or /students
 @login_required(login_url='/login')
 def studentList(request):
-  student_list = Student.objects.all()
+  current_user = request.user
+  print("CURRENT USER", current_user)
+  student_list = Student.objects.filter(teacher_id=current_user.id)
   context = {'student_list' : student_list}
   template = 'website/students/student.html'
   return render(request, template, context)
@@ -43,7 +45,7 @@ def addStudent(request):
     reading = get_object_or_404(Skills, pk=request.POST['reading'])
     course = get_object_or_404(Course, pk=request.POST['courseSelect'])
 
-    newStudent = Student(firstName = firstName, lastName = lastName, email = email, phone = phone, nativeLanguage = nativeLanguage, skillLevel = skillLevel, speaking = speaking, vocabulary = vocabulary, reading = reading)
+    newStudent = Student(teacher = request.user.teacher, firstName = firstName, lastName = lastName, email = email, phone = phone, nativeLanguage = nativeLanguage, skillLevel = skillLevel, speaking = speaking, vocabulary = vocabulary, reading = reading)
     newStudent.save()
     newClassroom = Classroom(student = newStudent, course = course)
     newClassroom.save()
@@ -71,11 +73,11 @@ def studentEditForm(request, student_id):
 @login_required(login_url='/login')
 def studentEdit(request, student_id):
   student = Student.objects.get(pk=student_id)
-  student.firstName = request.POST['firstName']
-  student.lastName = request.POST['lastName']
-  student.email = request.POST['email']
-  student.phone = request.POST['phone']
-  student.nativeLanguage = request.POST['nativeLanguage']
+  # student.firstName = request.POST['firstName']
+  # student.lastName = request.POST['lastName']
+  # student.email = request.POST['email']
+  # student.phone = request.POST['phone']
+  # student.nativeLanguage = request.POST['nativeLanguage']
   student.skillLevel = get_object_or_404(Skills, pk=request.POST['skillLevel'])
   student.reading_id = get_object_or_404(Skills, pk=request.POST['reading'])
   student.speaking_id = get_object_or_404(Skills, pk=request.POST['speaking'])

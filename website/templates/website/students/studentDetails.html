@@ -2,31 +2,38 @@
 
 {%block content%}
 
-
-<h1>{{ studentDetails.firstName }} {{ studentDetails.lastName }} Details</h1>
+<div class="screenAdjust">
+<h2>{{ studentDetails.firstName }} {{ studentDetails.lastName }} Details</h2>
 <br>
   
 <h3>Overall Level</h3>
 <p>{{ studentDetails.skillLevel.level }} </p>
 
-<h3>Individual Scores</h3>
-<ul>
+<h3>Skill Breakdown</h3>
+<ul class="studentDetails">
   <li>Speaking: {{ studentDetails.speaking.level }}</li>
   <li>Reading: {{ studentDetails.reading.level }}</li>
   <li>Vocabulary: {{ studentDetails.vocabulary.level }}</li>
 </ul>
 
+<h4>Student Details</h4>
+<ul class="studentDetails">
+  <li>Email: {{ studentDetails.email }}</li>
+  <li>Phone #: {{ studentDetails.phone }}</li>
+  <li>Native Language: {{ studentDetails.nativeLanguage }}</li>
+</ul>
+
 <div>
   <form action="/studentEditForm/{{studentDetails.id}}" method='get'>
-    <input type="submit" value="Edit Student">
+    <input class="btn btn-outline-info" type="submit" value="Edit Student">
   </form>
 </div>
-
+<br>
 <div>
   <form action="/studentDelete/{{studentDetails.id}}" method='post'>
     {% csrf_token %}
-    <input type="submit" value="Delete Student">
+    <input class="btn btn-outline-danger" type="submit" value="Delete Student">
   </form>
 </div>
-
+</div>
 {%endblock%}

@@ -3,9 +3,9 @@
 
 {%block content%}
 
-
+<div class="screenAdjust">
 <h1>{{ courseDetails.location }} - {{ courseDetails.level.level }}</h1>
-<ul>
+<ul class="courseDetails">
   <li>Meeting Time: {{ courseDetails.time }} </li>
   <li>Days: {{ courseDetails.days}}</li>
   <li>Start Date: {{ courseDetails.startDate}}</li>
@@ -13,12 +13,12 @@
 </ul>
 <div>
   <form action="/courseEditForm/{{courseDetails.id}}" method='get'>
-    <input type="submit" value="Edit Course Details">
+    <input class="btn btn-outline-dark" type="submit" value="Edit Course Details">
   </form>
 </div>
 <h3> Students In This Course</h3>  
 {% for classroom in courseDetails.classroom_set.all %}
-<ul>{{ classroom.student.firstName }}  {{ classroom.student.lastName}}
+<ul class="courseDetails">{{ classroom.student.firstName }}  {{ classroom.student.lastName}}
   <li>Overall Skill Level - {{ classroom.student.skillLevel.level}} </li>
   <li>Speaking Level - {{ classroom.student.speaking.level}} </li>
   <li>Reading Skill Level - {{ classroom.student.reading.level}} </li>
@@ -26,7 +26,7 @@
 
   <div>
     <form action="/studentEditForm/{{classroom.student.id}}" method='get'>
-      <input type="submit" value="Update Student">
+      <input class="btn btn-outline-info" type="submit" value="Update Student">
     </form>
   </div>
 </ul>
@@ -34,8 +34,8 @@
   <div>
     <form action="/courseDelete/{{courseDetails.id}}" method='post'>
       {% csrf_token %}
-      <input type="submit" value="Delete Course">
+      <input class="btn btn-outline-danger" type="submit" value="Delete Course">
     </form>
   </div>
-
+</div>
 {%endblock%}
