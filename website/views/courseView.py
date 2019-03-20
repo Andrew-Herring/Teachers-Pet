@@ -13,31 +13,42 @@ from website.models.courseModels import Course
 
 @login_required(login_url='/login')
 def courseList(request):
+  # get current user
   current_user = request.user
+  # display all the users courses
   course_list = Course.objects.filter(teacher_id=current_user.id)
+  # html template for course list
   template = 'website/courses/courses.html'
   return render(request, template, {'course_list' : course_list})
 
 @login_required(login_url='/login')
 def addCourse(request):
   if request.method == "GET":
+    # get current user
+    current_user = request.user
     teacher_list = Teacher.objects.all()
-    course_list = Course.objects.all()
+    # return teachers' course list
+    course_list = Course.objects.filter(teacher_id=current_user.id)
     skill_list = Skills.objects.all()
     template = 'website/courses/addCourse.html'
     context = {'courses' : course_list, 'skill_list' : skill_list, 'teacher_list' : teacher_list}
     return render(request, template, context)
 
   if request.method == "POST":
+    # use data user fills form with to create a new course, assign values to variables
     location = request.POST['location']
     time = request.POST['time']
     days = request.POST['days']
     startDate = request.POST['startDate']
     endDate = request.POST['endDate']
     level = get_object_or_404(Skills, pk=request.POST['level'])
+    # assign the teacher creating the class as the courses teacher
     teacher = request.user.teacher
+    # construct the new course with the provided values
     newCourse = Course(location = location, time = time, days = days, startDate = startDate, endDate = endDate, level = level, teacher = teacher)
+    # save the the course
     newCourse.save()
+    # display the new updated course list
     return redirect('website:courseList')
 
 @login_required(login_url='/login')

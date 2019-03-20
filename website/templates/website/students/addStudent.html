@@ -3,12 +3,12 @@
 
 {%block content%}
 
-
+<!-- new student form -->
 <div class="screenAdjust">
   <h2>Add a New Student</h2>
   <form action="{% url 'website:addStudent' %}" method="POST">
     {% csrf_token %}
-
+<!-- form inputs to collect student information -->
     First Name: <input type="text" name="firstName" placeholder="First Name" required=true>
 
     Last Name: <input type="text" name="lastName" placeholder="Last Name" required=true>
@@ -18,7 +18,7 @@
     Phone: <input type="text" name="phone" placeholder="(xxx)-xxx-xxxx" required=true>
 
     Native Language: <input type="text" name="nativeLanguage" placeholder="Student's Native Language" required=true>
-
+<!-- skill dropdowns, values are ids from the skill level table -->
     Overall Skill Level: <select name="skillLevel" id="skillLevel">
         {% for skills in skill_list %}
         <option value="{{skills.id}}">{{skills.level}}</option>
@@ -42,13 +42,13 @@
         <option value="{{skills.id}}">{{skills.level}}</option>
         {% endfor %}
       </select>
-
+<!-- assign the student to a course -->
     Add Student to Course:  <select name="courseSelect" id="courseSelect">
       {% for course in course_list %}
       <option value="{{course.id}}">{{course.location}} - {{course.level.level}}</option>
       {% endfor %}
     </select>
-    
+    <!-- save the student with the addstudent function -->
     <input class="btn btn-dark" type="submit" value="Save Student">
   </form>
 </div>

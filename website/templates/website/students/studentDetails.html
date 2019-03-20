@@ -2,33 +2,38 @@
 
 {%block content%}
 
+<!-- Details of clicked on student -->
 <div class="screenAdjust">
+  <!-- display students name -->
 <h2>{{ studentDetails.firstName }} {{ studentDetails.lastName }} Details</h2>
 <br>
   
+<!-- show students overall skill level -->
 <h3>Overall Level</h3>
 <p>{{ studentDetails.skillLevel.level }} </p>
 
+<!-- show students specific skill levels -->
 <h3>Skill Breakdown</h3>
 <ul class="studentDetails">
   <li>Speaking: {{ studentDetails.speaking.level }}</li>
   <li>Reading: {{ studentDetails.reading.level }}</li>
   <li>Vocabulary: {{ studentDetails.vocabulary.level }}</li>
 </ul>
-
+<!-- other information about student displayed here -->
 <h4>Student Details</h4>
 <ul class="studentDetails">
   <li>Email: {{ studentDetails.email }}</li>
   <li>Phone #: {{ studentDetails.phone }}</li>
   <li>Native Language: {{ studentDetails.nativeLanguage }}</li>
 </ul>
-
+<!-- button to edit student -->
 <div>
   <form action="/studentEditForm/{{studentDetails.id}}" method='get'>
     <input class="btn btn-outline-info" type="submit" value="Edit Student">
   </form>
 </div>
 <br>
+<!-- button to remove student from the student roster -->
 <div>
   <form action="/studentDelete/{{studentDetails.id}}" method='post'>
     {% csrf_token %}
