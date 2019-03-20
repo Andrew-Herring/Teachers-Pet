@@ -69,7 +69,7 @@ git clone git@github.com:Andrew-Herring/Teachers-Pet.git
 
 ## 4. Starting the project server
 
-After downloading the Teachers' Pet project, you should have a new folder within the Teachers' Pet Project folder that you created. The new folder will also be called PonyUp.  Navigate within this folder.  Start the server by typing:
+After downloading the Teachers' Pet project, you should have a new folder within the Teachers' Pet Project folder that you created. The new folder will also be called TeachersPet.  Navigate within this folder.  Start the server by typing:
 ```
 python manage.py runserver
 ```
