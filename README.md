@@ -1,34 +1,95 @@
-# Welcome to Bangazon
+# Welcome to Teachers' Pet by Andrew Herring
+----
+## What is Teachers Pet?
 
-This web application is the source code for the Bangazon e-commerce web site. It is powered by Python and Django.
+> Teachers' Pet is built in Python and Django and is used to organize and manage EFL and ESL teachers' students and courses. A user will log in and create an account as a Teacher then begin to add their courses.  After entering all of their courses a teacher can then add students to that course.  Students will have CEFR values assigned to them as well as three specific skills, readong, speaking and vocabulary.  A teacher can adjust these values as they see fit based on a students preformance in class.  This allows a teacher to have a better idea of what students need help in more specific areas, making lesson planning much easier and more focused around a students needs. Teachers' Pet can store history for multiple users and is fully CRUD capable. Data stored in SQLite 3 database.
 
-Students, you are inheriting a basic implementation that provides the following features:
+----
 
-1. User registration 
-1. User login 
-1. User logout 
-1. Adding a product 
-1. Listing products
+<!-- ![PonyUpScreenshot1](/src/images/2.png)
 
-Please consult the backlog of issues and work with your product owner to implement the top priority tickets for your sprints.
+![PonyUpScreenshot2](/src/images/1.png) -->
 
-## To begin work
+## What technologies went into the application?
 
-1. The team lead should clone this repository, then push it to your team's Github repo.
-1. Alert your manager when this is complete and all backlog issues will be imported into your project.
-1. Each teammate should clone the repository.
-1. In the `djangazon` directory that gets created, run the migrations with `python manage.py migrate`
+>  Python | Django | SQLite 3 | Bootstrap
 
-## Helpful Resources
+## Entity Relationship Diagram
+![Teachers Pet ERD](/static/website/images/teachersPetERD.png "Teachers' Pet ERD")
 
-### Django Models and Migrations
+# Installing Core Technologies
 
-Using the requirements above create a [model](https://docs.djangoproject.com/en/1.10/topics/db/models/) for each resource, and use [migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/) to ensure your database structure is up to date.
+## 1. SQLite
 
-### Templates
+### For OSX Users
 
-[Django template language](https://docs.djangoproject.com/en/1.10/ref/templates/language/)
+```
+brew install sqlite
+```
 
-### Form Helpers
+### For Windows Users
 
-Django has many built-in [helper tags and filters](https://docs.djangoproject.com/en/1.10/ref/templates/builtins/) when building the site templates. We strongly recommend reading this documentation while building your templates.
+Visit the [SQLite downloads](https://www.sqlite.org/download.html) and download the 64-bit DLL (x64) for SQLite version, unzip and install it.
+
+## 2. SQL Browser
+
+The [DB browser for SQLite](http://sqlitebrowser.org/) will let you view, query and manage your databases for this project.
+
+## 3. Visual Studio Code
+
+[Visual Studio Code](https://code.visualstudio.com/download) is Microsoft's cross-platform editor that you can use to view Python and Django code.
+
+# Setting up environment and installing dependencies
+
+## 1. Set up your virtual environment
+
+Within the terminal, navigate to the location where you'd like to create the new environment and Teachers' Pet project. Create a folder called TeachersPet and navigate within the new folder. Then, enter this text to create the new environment:
+```
+virtualenv ENV
+```
+Then activate your environment:
+```
+source ENV/bin/activate
+```
+Note that you can type "deactivate" to end the new environment at any time.
+
+## 2. Install Django
+
+Within your new TeachersPet folder, download the Django code by typing:
+```
+pip install django
+```
+
+## 3. Download the Teachers' Pet project
+
+Within your new TeachersPet project folder, download the source code by typing:
+```
+git clone git@github.com:Andrew-Herring/Teachers-Pet.git
+```
+
+## 4. Starting the project server
+
+After downloading the Teachers' Pet project, you should have a new folder within the Teachers' Pet Project folder that you created. The new folder will also be called PonyUp.  Navigate within this folder.  Start the server by typing:
+```
+python manage.py runserver
+```
+
+## 5. Navigate to the Teachers' Pet webpage
+
+Within your web browser, navigate to http://localhost:8000/
+
+From here, you should see the main links for the Teachers' Pet application.
+
+
+# Creating the Teachers' Pet DB
+
+While inside the TeachersPet/TeachersPet folder, enter this command:
+```
+python manage.py makemigrations website
+```
+Then enter
+```
+python manage.py migrate
+```
+You now have a database named sqlite3.sql within your existing folder.  Use the DB Browser for SQLite to open the new database if desired.
+
