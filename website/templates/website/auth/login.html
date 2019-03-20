@@ -12,7 +12,7 @@
 
         <h1>Login to Teachers' Pet</h1>
 
-        <form id="login_form" method="post" action="{% url 'website:login' %}">
+        <form  class="form-group" id="login_form" method="post" action="{% url 'website:login' %}">
             {% csrf_token %}
             Username: <input type="text" name="username" value="" size="50" />
             <br />

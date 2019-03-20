@@ -63,8 +63,8 @@ def courseEdit(request, course_id):
   course.location = request.POST['location']
   course.time = request.POST['time']
   course.days = request.POST['days']
-  course.startDate = request.POST['startDate']
-  course.endDate = request.POST['endDate']
+  # course.startDate = request.POST['startDate']
+  # course.endDate = request.POST['endDate']
   course.level = get_object_or_404(Skills, pk=request.POST['level'])
   course.teacher = request.user.teacher
   course.save()

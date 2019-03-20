@@ -12,7 +12,11 @@
 
     Class Level: <select name="level" id="level" value="{{course.level}}">
       {% for skills in skill_list %}
+      {% if skills.id == course.level.id %}
+      <option value="{{skills.id}}" selected>{{skills.level}}</option>
+      {% else %}
       <option value="{{skills.id}}">{{skills.level}}</option>
+      {% endif %}
       {% endfor %}
     </select>
 
@@ -22,9 +26,9 @@
 
     Meeting Time: <input type="text" name="time" value="{{course.time}}" required=true>
 
-    Class Start Date: <input type="date" name="startDate" value="{{course.startDate}}" required=true>
+    <!-- Class Start Date: <input type="date" name="startDate" value="{{course.startDate}}" required=true>
 
-    Class End Date: <input type="date" name="endDate" value="{{course.endDate}}" required=true>
+    Class End Date: <input type="date" name="endDate" value="{{course.endDate}}" required=true> -->
     
     <input class="btn btn-dark" type="submit" value="Save new class">
   </form>
