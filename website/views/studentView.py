@@ -16,7 +16,6 @@ from website.models.studentModels import Student
 @login_required(login_url='/login')
 def studentList(request):
   current_user = request.user
-  print("CURRENT USER", current_user)
   student_list = Student.objects.filter(teacher_id=current_user.id)
   context = {'student_list' : student_list}
   template = 'website/students/student.html'
@@ -27,9 +26,10 @@ def studentList(request):
 @login_required(login_url='/login')
 def addStudent(request):
   if request.method == "GET":
+    current_user = request.user
     student_list = Student.objects.all
     skill_list = Skills.objects.all()
-    course_list = Course.objects.all()
+    course_list = Course.objects.filter(teacher_id=current_user.id)
     context = {'student_list' : student_list, 'skill_list' : skill_list, 'course_list' : course_list}
     template = 'website/students/addStudent.html'
     return render(request, template, context)

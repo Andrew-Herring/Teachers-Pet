@@ -13,7 +13,8 @@ from website.models.courseModels import Course
 
 @login_required(login_url='/login')
 def courseList(request):
-  course_list = Course.objects.all()
+  current_user = request.user
+  course_list = Course.objects.filter(teacher_id=current_user.id)
   template = 'website/courses/courses.html'
   return render(request, template, {'course_list' : course_list})
 

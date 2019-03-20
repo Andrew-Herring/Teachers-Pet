@@ -11,19 +11,19 @@
 
 
         <h1>Login to Teachers' Pet</h1>
-
         <form  class="form-group" id="login_form" method="post" action="{% url 'website:login' %}">
             {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
+            Username: <input class="form-control" type="text" name="username" value="" size="50" />
             <br />
-            Password: <input type="password" name="password" value="" size="50" />
+            Password: <input class="form-control" type="password" name="password" value="" size="50" />
             <br />
 
-            <input type="submit" value="Log In" />
+            <input class="btn btn-success" type="submit" value="Log In" />
           </form>
           <p>Or if you are new you can register here</p>
           <form action="/register" method='get'>
-            <input type="submit" value="Register">
+            <input class="btn btn-primary" type="submit" value="Register">
           </form>
+      </div>
     </body>
 </html>
