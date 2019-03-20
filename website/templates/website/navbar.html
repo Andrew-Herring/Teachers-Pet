@@ -1,24 +1,29 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'website/main.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'website/index.css' %}" />
 
 
-
+<!-- Nav Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="/">Teachers Pet</a>
+  <!-- site logo -->
+    <img src="{% static 'website/images/teachersPet.png' %}" width="50px" height="50px">
+    <!-- clicking the name on the nav takes you to the student view -->
+    <a class="navbar-brand" href="/students">Teachers' Pet</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span> 
     </button>
-  
+  <!-- nav collapses if screen in certain size -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
+          <!-- show the student list view -->
           <a class="nav-link" href="/students">Students</a>
         </li>
         <li class="nav-item">
+          <!-- show the course list view -->
           <a class="nav-link" href="/courses">Courses</a>
         </li> 
       </ul>
-
+          <!-- log the user out -->
       <ul class="navbar-nav ml-lg-auto">
         <li class="nav-item">
           <a class="nav-link" href="/logout">Logout</a>

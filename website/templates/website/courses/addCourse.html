@@ -3,18 +3,23 @@
 
 {%block content%}
 
-<h1>Add a course</h1>
+
+
+<!-- add a new course to the class list -->
+<div class="screenAdjust">
+
+<h2>Add a course</h2>
 
 <div>
   <form action="{% url 'website:addCourse' %}" method="POST">
     {% csrf_token %}
-
+    <!-- determine the overall skill level of the class, pulls values from the skill table and puts them in a dropdown -->
     Class Level: <select name="level" id="level" placeholder="Class Level">
       {% for skills in skill_list %}
       <option value="{{skills.id}}">{{skills.level}}</option>
       {% endfor %}
     </select>
-
+    <!-- specify the meeting details of the class -->
     Location: <input type="text" name="location" placeholder="Class Location" required=true>
 
     Meeting Days: <input type="text" name="days" placeholder="Days The Class Takes Place" required=true>
@@ -25,7 +30,8 @@
 
     Class End Date: <input type="date" name="endDate" required=true>
     
-    <input type="submit" value="Save new class">
+    <input class="btn btn-dark" type="submit" value="Save new class">
   </form>
+</div>
 </div>
 {%endblock%}

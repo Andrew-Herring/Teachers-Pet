@@ -3,24 +3,30 @@
 
 {% block content %}
 
-<h1>Courses</h1>
+<!-- display the course list created by registered teachers -->
 
+<div class="screenAdjust">
 
-<h4>Here are all of your classes.</h4>
+<h2>Courses</h2>
+
+<!-- greet the logged in user -->
+<h4>Here are all of your classes, {{user.username}}</h4>
+<!-- fetch course names by looping over the course table -->
 {% for course in course_list %}
-<ul >
-    <p><a href="{% url 'website:courseDetails' course.id %}">{{ course.location }} - {{ course.level.level }}</a></p>
-    <ul>
-      <li>Number of Students: {{ course.classroom_set.all|length}}</li>
-    </ul>
+  <ul>
+    <!-- display course location and level as clickable link to the details page -->
+    <li><a href="{% url 'website:courseDetails' course.id %}">{{ course.location }} - {{ course.level.level }}</a></li>
+    <!-- dispaly number of students in the course -->
+      <p>Number of Students: {{ course.classroom_set.all|length}}</p>
   </ul>
   <br>
 {% endfor %}
-
+<!-- add a new course to the course list -->
 <h3>Add a class</h3>
 <div>
     <form action="/addCourse" method='get'>
-      <input type="submit" value="Add A Class">
+      <input class="btn btn-dark" type="submit" value="Add A Class">
     </form>
   </div>
+</div>
 {% endblock content %}
