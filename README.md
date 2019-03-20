@@ -15,7 +15,7 @@
 >  Python | Django | SQLite 3 | Bootstrap
 
 ## Entity Relationship Diagram
-![Teachers Pet ERD](/static/website/images/teachersPetERD.png "Teachers' Pet ERD")
+![Teachers Pet ERD](/website/static/website/images/teachersPetERD.png "Teachers' Pet ERD")
 
 # Installing Core Technologies
 
