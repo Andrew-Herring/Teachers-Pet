@@ -8,21 +8,26 @@
 <h2>Students</h2>
 
 <h4>Here are all of your registered students, {{ user.username }}</h4>
-<ul>
-  <!-- find the names and information of students in the DB -->
-  {% for student in student_list %}
-  <!-- make their names a clickable link that takes a user to the students detail page -->
-    <li><a href="{% url 'website:studentDetails' student.id %}">{{ student.firstName }} {{ student.lastName }} </a>
-      <p>Student Level: {{ student.skillLevel.level }}</p>
-      <br>
-    </li>
-  {% endfor %}
-</ul>
+<!-- find the names and information of students in the DB -->
+<div class="container">
+  <div class="row">
+{% for student in student_list %}
 
-<!-- create a new student button -->
-<div>
+<!-- make their names a clickable link that takes a user to the students detail page -->
+
+<ul class="card student-card">
+    <li class="card-title"><a href="{% url 'website:studentDetails' student.id %}">{{ student.firstName }} {{ student.lastName }} </a>
+    </li>
+      <p class="card-subtitle mb-2 text-muted">Student Level: {{ student.skillLevel.level }}</p>
+  </ul>
+  {% endfor %}
+  </div>
+</div>
+  
+  <!-- create a new student button -->
+  <div class="add-button">
     <form action="/addStudent" method='get'>
-      <input class="btn btn-dark" type="submit" value="Add A Student">
+      <input class="btn btn-dark student-add-button" type="submit" value="Add A Student">
     </form>
   </div>
 </div>
