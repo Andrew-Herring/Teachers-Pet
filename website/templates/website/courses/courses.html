@@ -12,20 +12,23 @@
 <!-- greet the logged in user -->
 <h4>Here are all of your classes, {{user.username}}</h4>
 <!-- fetch course names by looping over the course table -->
+<div class="container">
+    <div class="row">
 {% for course in course_list %}
-  <ul>
+  <ul class="card course-card">
     <!-- display course location and level as clickable link to the details page -->
-    <li><a href="{% url 'website:courseDetails' course.id %}">{{ course.location }} - {{ course.level.level }}</a></li>
+    <li class="card-title"><a href="{% url 'website:courseDetails' course.id %}">{{ course.location }} - {{ course.level.level }}</a></li>
     <!-- dispaly number of students in the course -->
-      <p>Number of Students: {{ course.classroom_set.all|length}}</p>
+      <p class="card-subtitle mb-2 text-muted">Number of Students: {{ course.classroom_set.all|length}}</p>
   </ul>
   <br>
 {% endfor %}
+  </div>
+</div>
 <!-- add a new course to the course list -->
-<h3>Add a class</h3>
-<div>
+<div class="add-button">
     <form action="/addCourse" method='get'>
-      <input class="btn btn-dark" type="submit" value="Add A Class">
+      <input class="btn btn-dark course-add-button" type="submit" value="Add A Class">
     </form>
   </div>
 </div>

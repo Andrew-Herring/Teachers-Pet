@@ -2,50 +2,61 @@
 
 
 {%block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="screenAdjust">
+        <!-- get the location and level of the clicked on course -->
+        <!-- specific details of a course, will show all the students in a course -->
+        <h1 class="col">{{ courseDetails.location }} - {{ courseDetails.level.level }}</h1>
+        <ul class="courseDetails">
+          <!-- show meeting details of the specific course -->
+          <li>Meeting Time: {{ courseDetails.time }} </li>
+          <li>Days: {{ courseDetails.days}}</li>
+          <li>Start Date: {{ courseDetails.startDate}}</li>
+          <li>End Date: {{ courseDetails.endDate}}</li>
+        </ul>
+        <!-- button to take user to the edit page to change details of the course -->
+        <div>
+          <form action="/courseEditForm/{{courseDetails.id}}" method='get'>
+            <input class="btn btn-outline-dark" type="submit" value="Edit Course Details">
+          </form>
+          <br>
+          <div>
+              <form action="/courseDelete/{{courseDetails.id}}" method='post'>
+                {% csrf_token %}
+                <input class="btn btn-outline-danger" type="submit" value="Delete Course">
+              </form>
+            </div>
+        </div>
+      </div>
+      </div>
+      <br>
+      <div class="col-6">
+        <div class="screenAdjust">
 
-<!-- specific details of a course, will show all the students in a course -->
-<div class="screenAdjust">
-  <!-- get the location and level of the clicked on course -->
-<h1>{{ courseDetails.location }} - {{ courseDetails.level.level }}</h1>
-<ul class="courseDetails">
-  <!-- show meeting details of the specific course -->
-  <li>Meeting Time: {{ courseDetails.time }} </li>
-  <li>Days: {{ courseDetails.days}}</li>
-  <li>Start Date: {{ courseDetails.startDate}}</li>
-  <li>End Date: {{ courseDetails.endDate}}</li>
-</ul>
-<!-- button to take user to the edit page to change details of the course -->
-<div>
-  <form action="/courseEditForm/{{courseDetails.id}}" method='get'>
-    <input class="btn btn-outline-dark" type="submit" value="Edit Course Details">
-  </form>
-</div>
-<br>
-<h4> Students In This Course</h4>  
-<!-- list the students added to the course -->
-{% for classroom in courseDetails.classroom_set.all %}
-<!-- list students skill levels -->
-<ul class="courseDetails">{{ classroom.student.firstName }}  {{ classroom.student.lastName}}
-  <li>Overall Skill Level - {{ classroom.student.skillLevel.level}} </li>
-  <li>Speaking Level - {{ classroom.student.speaking.level}} </li>
-  <li>Reading Skill Level - {{ classroom.student.reading.level}} </li>
-  <li>Vocabulary Skill Level - {{ classroom.student.vocabulary.level}} </li>
+          <h4> Students In This Course</h4>
+          <!-- list the students added to the course -->
+          {% for classroom in courseDetails.classroom_set.all %}
+          <!-- list students skill levels -->
+          <ul class="courseDetails">{{ classroom.student.firstName }} {{ classroom.student.lastName}}
+            <li>Overall Skill Level - {{ classroom.student.skillLevel.level}} </li>
+            <li>Speaking Level - {{ classroom.student.speaking.level}} </li>
+            <li>Reading Skill Level - {{ classroom.student.reading.level}} </li>
+            <li>Vocabulary Skill Level - {{ classroom.student.vocabulary.level}} </li>
 
-  <!-- button to take user to the edit student page -->
-  <div>
-    <form action="/studentEditForm/{{classroom.student.id}}" method='get'>
-      <input class="btn btn-outline-info" type="submit" value="Update Student">
-    </form>
-  </div>
-</ul>
-  {% endfor %}
-  <br>
-  <!-- click to remove course from the course list -->
-  <div>
-    <form action="/courseDelete/{{courseDetails.id}}" method='post'>
-      {% csrf_token %}
-      <input class="btn btn-outline-danger" type="submit" value="Delete Course">
-    </form>
+            <!-- button to take user to the edit student page -->
+            <div>
+              <form action="/studentEditForm/{{classroom.student.id}}" method='get'>
+                <input class="btn btn-outline-info" type="submit" value="Update Student">
+              </form>
+            </div>
+          </ul>
+          {% endfor %}
+       
+        </div>
+      </div>
   </div>
 </div>
-{%endblock%}
+
+  {%endblock%}
